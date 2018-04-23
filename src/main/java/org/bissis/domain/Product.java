@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * @author Markus Ullrich
  */
-public class Product {
+public class Product implements DomainObject {
     private Integer id;
     private String description;
     private BigDecimal price;
@@ -36,10 +36,12 @@ public class Product {
         this.description = description;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
