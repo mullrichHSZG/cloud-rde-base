@@ -165,19 +165,19 @@ public class CustomerControllerTest {
                 .andExpect(model().attribute("customer", hasProperty("zipCode", is(zip))));
 
         //verify properties of bound object
-        ArgumentCaptor<Customer> boundProduct = ArgumentCaptor.forClass(Customer.class);
-        verify(customerService).saveOrUpdate(boundProduct.capture());
+        ArgumentCaptor<Customer> boundCustomer = ArgumentCaptor.forClass(Customer.class);
+        verify(customerService).saveOrUpdate(boundCustomer.capture());
 
-        assertEquals(id, boundProduct.getValue().getId());
-        assertEquals(first, boundProduct.getValue().getFirstName());
-        assertEquals(last, boundProduct.getValue().getLastName());
-        assertEquals(email, boundProduct.getValue().getEmail());
-        assertEquals(phoneNumber, boundProduct.getValue().getPhoneNumber());
-        assertEquals(addressLineOne, boundProduct.getValue().getAddressLineOne());
-        assertEquals(addressLineTwo, boundProduct.getValue().getAddressLineTwo());
-        assertEquals(city, boundProduct.getValue().getCity());
-        assertEquals(state, boundProduct.getValue().getState());
-        assertEquals(zip, boundProduct.getValue().getZipCode());
+        assertEquals(id, boundCustomer.getValue().getId());
+        assertEquals(first, boundCustomer.getValue().getFirstName());
+        assertEquals(last, boundCustomer.getValue().getLastName());
+        assertEquals(email, boundCustomer.getValue().getEmail());
+        assertEquals(phoneNumber, boundCustomer.getValue().getPhoneNumber());
+        assertEquals(addressLineOne, boundCustomer.getValue().getAddressLineOne());
+        assertEquals(addressLineTwo, boundCustomer.getValue().getAddressLineTwo());
+        assertEquals(city, boundCustomer.getValue().getCity());
+        assertEquals(state, boundCustomer.getValue().getState());
+        assertEquals(zip, boundCustomer.getValue().getZipCode());
     }
 
     @Test

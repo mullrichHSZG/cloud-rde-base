@@ -1,11 +1,20 @@
 package org.bissis.domain;
 
+import javax.persistence.*;
+
 /**
  * @author Markus Ullrich
  */
+@Entity
 public class Customer implements DomainObject{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Version
+    private Integer version;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -96,5 +105,13 @@ public class Customer implements DomainObject{
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }
