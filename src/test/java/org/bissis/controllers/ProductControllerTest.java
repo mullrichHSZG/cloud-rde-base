@@ -68,7 +68,6 @@ public class ProductControllerTest {
 
     @Test
     public void newProduct() throws Exception {
-        Integer id = 1;
 
         verifyZeroInteractions(productService);
 
