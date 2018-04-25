@@ -2,7 +2,9 @@ package org.bissis.services;
 
 import org.bissis.domain.DomainObject;
 import org.bissis.domain.Product;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -11,6 +13,7 @@ import java.util.*;
  * @author Markus Ullrich
  */
 @Service
+@Profile("map")
 public class ProductServiceImpl extends AbstractMapService implements ProductService {
 
     @Override
