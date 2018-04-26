@@ -1,12 +1,12 @@
 package org.bissis.services;
 
-import org.bissis.domain.Product;
+import org.bissis.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import java.util.List;
 
 /**
@@ -14,39 +14,39 @@ import java.util.List;
  */
 @Service
 @Profile("jpadao")
-public class ProductServiceJpaDaoImpl implements ProductService {
+public class CustomerServiceJpaDaoImpl implements CustomerService {
 
-    private EntityManagerFactory emf;
+    EntityManagerFactory emf;
 
-    @PersistenceUnit
+    @Autowired
     public void setEmf(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
     @Override
-    public List<Product> listAll() {
+    public List<?> listAll() {
         EntityManager em = emf.createEntityManager();
-        List<Product> result = em.createQuery("from Product", Product.class).getResultList();
+        List<Customer> result = em.createQuery("from Customer", Customer.class).getResultList();
         em.close();
         return result;
     }
 
     @Override
-    public Product getById(Integer id) {
+    public Customer getById(Integer id) {
         EntityManager em = emf.createEntityManager();
-        Product result = em.find(Product.class, id);
+        Customer result = em.find(Customer.class, id);
         em.close();
         return result;
     }
 
     @Override
-    public Product saveOrUpdate(Product domainObject) {
+    public Customer saveOrUpdate(Customer domainObject) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Product savedProduct = em.merge(domainObject);
+        Customer result = em.merge(domainObject);
         em.getTransaction().commit();
         em.close();
-        return savedProduct;
+        return result;
     }
 
     @Override
@@ -54,8 +54,7 @@ public class ProductServiceJpaDaoImpl implements ProductService {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        em.remove(em.find(Product.class, id));
-
+        em.remove(em.find(Customer.class, id));
         em.getTransaction().commit();
         em.close();
     }
