@@ -1,5 +1,6 @@
 package org.bissis.bootstrap;
 
+import org.bissis.domain.Address;
 import org.bissis.domain.Customer;
 import org.bissis.domain.Product;
 import org.bissis.services.CustomerService;
@@ -35,11 +36,12 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer1.setLastName("Adams");
         customer1.setEmail("anthony@adams.com");
         customer1.setPhoneNumber("111-11111");
-        customer1.setAddressLineOne("Amber Alley 11");
-        customer1.setAddressLineTwo("Apartment 111");
-        customer1.setCity("Atlanta");
-        customer1.setState("Georgia");
-        customer1.setZipCode("30301");
+        customer1.setBillingAddress(new Address());
+        customer1.getBillingAddress().setAddressLineOne("Amber Alley 11");
+        customer1.getBillingAddress().setAddressLineTwo("Apartment 111");
+        customer1.getBillingAddress().setCity("Atlanta");
+        customer1.getBillingAddress().setState("Georgia");
+        customer1.getBillingAddress().setZipCode("30301");
         this.customerService.saveOrUpdate(customer1);
 
         Customer customer2 = new Customer();
@@ -47,11 +49,12 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer2.setLastName("Barnes");
         customer2.setEmail("bertha@barnes.com");
         customer2.setPhoneNumber("222-22222");
-        customer2.setAddressLineOne("Balentine Boulevard 22");
-        customer2.setAddressLineTwo("Basement");
-        customer2.setCity("Boston");
-        customer2.setState("Massachusetts");
-        customer2.setZipCode("02222");
+        customer2.setBillingAddress(new Address());
+        customer2.getBillingAddress().setAddressLineOne("Balentine Boulevard 22");
+        customer2.getBillingAddress().setAddressLineTwo("Basement");
+        customer2.getBillingAddress().setCity("Boston");
+        customer2.getBillingAddress().setState("Massachusetts");
+        customer2.getBillingAddress().setZipCode("02222");
         this.customerService.saveOrUpdate(customer2);
 
         Customer customer3 = new Customer();
@@ -59,11 +62,12 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer3.setLastName("Cartwright");
         customer3.setEmail("charles@cartwright.com");
         customer3.setPhoneNumber("333-33333");
-        customer3.setAddressLineOne("Kane County");
-        customer3.setAddressLineTwo("Carpentersville");
-        customer3.setCity("Chicago");
-        customer3.setState("Illinois");
-        customer3.setZipCode("60110");
+        customer3.setBillingAddress(new Address());
+        customer3.getBillingAddress().setAddressLineOne("Kane County");
+        customer3.getBillingAddress().setAddressLineTwo("Carpentersville");
+        customer3.getBillingAddress().setCity("Chicago");
+        customer3.getBillingAddress().setState("Illinois");
+        customer3.getBillingAddress().setZipCode("60110");
         this.customerService.saveOrUpdate(customer3);
     }
 

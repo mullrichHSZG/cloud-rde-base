@@ -1,6 +1,7 @@
 package org.bissis.services;
 
 import org.bissis.config.JpaIntegrationConfig;
+import org.bissis.domain.Address;
 import org.bissis.domain.Customer;
 import org.bissis.domain.User;
 import org.junit.Before;
@@ -44,12 +45,14 @@ public class CustomerServiceJpaDaoImplTest {
     @Test
     public void saveOrUpdate() throws Exception {
         Customer newCustomer = new Customer();
+        Address expectedBillingAddress = new Address();
+        newCustomer.setBillingAddress(expectedBillingAddress);
         String zipCode = "12345";
-        newCustomer.setZipCode(zipCode);
+        expectedBillingAddress.setZipCode(zipCode);
         String state = "Illinois";
-        newCustomer.setState(state);
+        expectedBillingAddress.setState(state);
         String city = "Kansas";
-        newCustomer.setCity(city);
+        expectedBillingAddress.setCity(city);
         String email = "john@doe.com";
         newCustomer.setEmail(email);
         String phoneNumber = "123-456789";
@@ -59,9 +62,9 @@ public class CustomerServiceJpaDaoImplTest {
         String lastName = "Doe";
         newCustomer.setLastName(lastName);
         String addressLineOne = "Balentine Drive 1";
-        newCustomer.setAddressLineOne(addressLineOne);
+        expectedBillingAddress.setAddressLineOne(addressLineOne);
         String addressLineTwo = "-";
-        newCustomer.setAddressLineTwo(addressLineTwo);
+        expectedBillingAddress.setAddressLineTwo(addressLineTwo);
         User user = new User();
         user.setUsername("user");
         user.setPassword("password");
@@ -70,15 +73,15 @@ public class CustomerServiceJpaDaoImplTest {
         Integer id = 4;
         newCustomer.setId(id);
         assert newCustomer.getId().equals(savedCustomer.getId());
-        assert newCustomer.getZipCode().equals(savedCustomer.getZipCode());
-        assert newCustomer.getCity().equals(savedCustomer.getCity());
-        assert newCustomer.getState().equals(savedCustomer.getState());
+        assert newCustomer.getBillingAddress().getZipCode().equals(savedCustomer.getBillingAddress().getZipCode());
+        assert newCustomer.getBillingAddress().getCity().equals(savedCustomer.getBillingAddress().getCity());
+        assert newCustomer.getBillingAddress().getState().equals(savedCustomer.getBillingAddress().getState());
         assert newCustomer.getEmail().equals(savedCustomer.getEmail());
         assert newCustomer.getPhoneNumber().equals(savedCustomer.getPhoneNumber());
         assert newCustomer.getFirstName().equals(savedCustomer.getFirstName());
         assert newCustomer.getLastName().equals(savedCustomer.getLastName());
-        assert newCustomer.getAddressLineOne().equals(savedCustomer.getAddressLineOne());
-        assert newCustomer.getAddressLineTwo().equals(savedCustomer.getAddressLineTwo());
+        assert newCustomer.getBillingAddress().getAddressLineOne().equals(savedCustomer.getBillingAddress().getAddressLineOne());
+        assert newCustomer.getBillingAddress().getAddressLineTwo().equals(savedCustomer.getBillingAddress().getAddressLineTwo());
         assert newCustomer.getUser().getId() != null;
     }
 
