@@ -1,4 +1,4 @@
-package org.bissis.services;
+package org.bissis.services.map;
 
 import org.bissis.domain.DomainObject;
 

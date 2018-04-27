@@ -1,6 +1,7 @@
-package org.bissis.services;
+package org.bissis.services.jpa;
 
 import org.bissis.domain.Product;
+import org.bissis.services.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,7 @@ import java.util.List;
  */
 @Service
 @Profile("jpadao")
-public class ProductServiceJpaDaoImpl implements ProductService {
-
-    private EntityManagerFactory emf;
-
-    @PersistenceUnit
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+public class ProductServiceJpaDaoImpl extends AbstractJpaDaoService implements ProductService {
 
     @Override
     public List<Product> listAll() {

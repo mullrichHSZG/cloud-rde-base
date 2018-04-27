@@ -2,6 +2,7 @@ package org.bissis.services;
 
 import org.bissis.config.JpaIntegrationConfig;
 import org.bissis.domain.Customer;
+import org.bissis.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,6 +62,10 @@ public class CustomerServiceJpaDaoImplTest {
         newCustomer.setAddressLineOne(addressLineOne);
         String addressLineTwo = "-";
         newCustomer.setAddressLineTwo(addressLineTwo);
+        User user = new User();
+        user.setUsername("user");
+        user.setPassword("password");
+        newCustomer.setUser(user);
         Customer savedCustomer = customerService.saveOrUpdate(newCustomer);
         Integer id = 4;
         newCustomer.setId(id);
@@ -74,6 +79,7 @@ public class CustomerServiceJpaDaoImplTest {
         assert newCustomer.getLastName().equals(savedCustomer.getLastName());
         assert newCustomer.getAddressLineOne().equals(savedCustomer.getAddressLineOne());
         assert newCustomer.getAddressLineTwo().equals(savedCustomer.getAddressLineTwo());
+        assert newCustomer.getUser().getId() != null;
     }
 
     @Test

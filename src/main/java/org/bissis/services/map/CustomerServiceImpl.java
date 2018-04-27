@@ -1,7 +1,8 @@
-package org.bissis.services;
+package org.bissis.services.map;
 
 import org.bissis.domain.Customer;
 import org.bissis.domain.DomainObject;
+import org.bissis.services.CustomerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

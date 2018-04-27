@@ -1,6 +1,8 @@
-package org.bissis.services;
+package org.bissis.services.jpa;
 
 import org.bissis.domain.Customer;
+import org.bissis.services.CustomerService;
+import org.bissis.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -14,14 +16,9 @@ import java.util.List;
  */
 @Service
 @Profile("jpadao")
-public class CustomerServiceJpaDaoImpl implements CustomerService {
+public class CustomerServiceJpaDaoImpl extends AbstractJpaDaoService implements CustomerService {
 
-    EntityManagerFactory emf;
-
-    @Autowired
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+    private EncryptionService encryptionService;
 
     @Override
     public List<?> listAll() {
@@ -43,6 +40,13 @@ public class CustomerServiceJpaDaoImpl implements CustomerService {
     public Customer saveOrUpdate(Customer domainObject) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        if (domainObject.getUser() != null) {
+            if (domainObject.getUser().getPassword() != null) {
+                domainObject.getUser().setEncryptedPassword(
+                        encryptionService.encryptString(domainObject.getUser().getPassword())
+                );
+            }
+        }
         Customer result = em.merge(domainObject);
         em.getTransaction().commit();
         em.close();
@@ -57,5 +61,10 @@ public class CustomerServiceJpaDaoImpl implements CustomerService {
         em.remove(em.find(Customer.class, id));
         em.getTransaction().commit();
         em.close();
+    }
+
+    @Autowired
+    public void setEncryptionService(EncryptionService encryptionService) {
+        this.encryptionService = encryptionService;
     }
 }
