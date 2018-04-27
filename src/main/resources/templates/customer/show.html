@@ -56,31 +56,31 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Address Line 1:</label>
                         <div class="col-sm-9">
-                            <p class="form-control-static" th:text="${customer.addressLineOne}">Address Line 1</p>
+                            <p class="form-control-static" th:text="${customer.billingAddress.addressLineOne}">Address Line 1</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Address Line 2:</label>
                         <div class="col-sm-9">
-                            <p class="form-control-static" th:text="${customer.addressLineTwo}">Address Line 2</p>
+                            <p class="form-control-static" th:text="${customer.billingAddress.addressLineTwo}">Address Line 2</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">City:</label>
                         <div class="col-sm-9">
-                            <p class="form-control-static" th:text="${customer.city}">City</p>
+                            <p class="form-control-static" th:text="${customer.billingAddress.city}">City</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">State:</label>
                         <div class="col-sm-9">
-                            <p class="form-control-static" th:text="${customer.state}">State</p>
+                            <p class="form-control-static" th:text="${customer.billingAddress.state}">State</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 sm-3 control-label">ZIP Code:</label>
                         <div class="col-sm-9">
-                            <p class="form-control-static" th:text="${customer.zipCode}">ZIP Code</p>
+                            <p class="form-control-static" th:text="${customer.billingAddress.zipCode}">ZIP Code</p>
                         </div>
                     </div>
                 </form>
