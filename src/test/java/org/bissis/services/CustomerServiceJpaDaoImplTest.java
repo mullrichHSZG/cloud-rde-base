@@ -35,14 +35,6 @@ public class CustomerServiceJpaDaoImplTest {
     }
 
     @Test
-    public void getById() throws Exception {
-        Customer customer = customerService.getById(2);
-        assert customer != null;
-        customer = customerService.getById(4);
-        assert customer == null;
-    }
-
-    @Test
     public void saveOrUpdate() throws Exception {
         Customer newCustomer = new Customer();
         Address expectedBillingAddress = new Address();
@@ -70,9 +62,7 @@ public class CustomerServiceJpaDaoImplTest {
         user.setPassword("password");
         newCustomer.setUser(user);
         Customer savedCustomer = customerService.saveOrUpdate(newCustomer);
-        Integer id = 4;
-        newCustomer.setId(id);
-        assert newCustomer.getId().equals(savedCustomer.getId());
+        assert savedCustomer.getId() != null;
         assert newCustomer.getBillingAddress().getZipCode().equals(savedCustomer.getBillingAddress().getZipCode());
         assert newCustomer.getBillingAddress().getCity().equals(savedCustomer.getBillingAddress().getCity());
         assert newCustomer.getBillingAddress().getState().equals(savedCustomer.getBillingAddress().getState());
@@ -82,12 +72,13 @@ public class CustomerServiceJpaDaoImplTest {
         assert newCustomer.getLastName().equals(savedCustomer.getLastName());
         assert newCustomer.getBillingAddress().getAddressLineOne().equals(savedCustomer.getBillingAddress().getAddressLineOne());
         assert newCustomer.getBillingAddress().getAddressLineTwo().equals(savedCustomer.getBillingAddress().getAddressLineTwo());
-        assert newCustomer.getUser().getId() != null;
+        assert savedCustomer.getUser().getId() != null;
     }
 
     @Test
     public void delete() throws Exception {
-        customerService.delete(1);
+        List<Customer> customers = (List<Customer>) customerService.listAll();
+        customerService.delete(customers.get(0).getId());
         assert customerService.listAll().size() == 2;
     }
 

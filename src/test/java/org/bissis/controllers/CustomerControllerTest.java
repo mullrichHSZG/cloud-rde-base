@@ -158,8 +158,12 @@ public class CustomerControllerTest {
                 .andExpect(model().attribute("customer", hasProperty("firstName", is(first))))
                 .andExpect(model().attribute("customer", hasProperty("lastName", is(last))))
                 .andExpect(model().attribute("customer", hasProperty("email", is(email))))
-                .andExpect(model().attribute("customer", hasProperty("phoneNumber", is(phoneNumber))));
-                //.andExpect(model().attribute("customer", hasProperty("billingAddress", is(expectedBillingAddress))));
+                .andExpect(model().attribute("customer", hasProperty("phoneNumber", is(phoneNumber))))
+                .andExpect(model().attribute("customer", hasProperty("billingAddress", hasProperty("addressLineOne"))))
+                .andExpect(model().attribute("customer", hasProperty("billingAddress", hasProperty("addressLineTwo"))))
+                .andExpect(model().attribute("customer", hasProperty("billingAddress", hasProperty("city"))))
+                .andExpect(model().attribute("customer", hasProperty("billingAddress", hasProperty("state"))))
+                .andExpect(model().attribute("customer", hasProperty("billingAddress", hasProperty("zipCode"))));
 
         //verify properties of bound object
         ArgumentCaptor<Customer> boundCustomer = ArgumentCaptor.forClass(Customer.class);

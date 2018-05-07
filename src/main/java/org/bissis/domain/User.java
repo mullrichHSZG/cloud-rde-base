@@ -6,14 +6,9 @@ import javax.persistence.*;
  * @author Markus Ullrich
  */
 @Entity
-public class User implements DomainObject {
+public class User extends AbstractDomainClass {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Version
-    private Integer version;
+    //TODO: new abstract class to prevent User and OrderLine from inheriting dateCreated and lastUpdated?
 
     private String username;
 
@@ -28,16 +23,6 @@ public class User implements DomainObject {
 
     @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     private Cart cart;
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -71,14 +56,6 @@ public class User implements DomainObject {
         this.enabled = enabled;
     }
 
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -94,5 +71,6 @@ public class User implements DomainObject {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+        cart.setUser(this);
     }
 }

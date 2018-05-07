@@ -102,6 +102,7 @@ public class ProductControllerTest {
         returnProduct.setPrice(price);
         returnProduct.setImageUrl(imageUrl);
 
+        //noinspection deprecation
         when(productService.saveOrUpdate(Matchers.<Product>any())).thenReturn(returnProduct);
 
         mockMvc.perform(post("/product")

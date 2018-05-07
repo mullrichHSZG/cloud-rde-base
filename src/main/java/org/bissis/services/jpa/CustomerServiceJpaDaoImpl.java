@@ -2,6 +2,7 @@ package org.bissis.services.jpa;
 
 import org.bissis.domain.Customer;
 import org.bissis.services.CustomerService;
+import org.bissis.services.UserService;
 import org.bissis.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;

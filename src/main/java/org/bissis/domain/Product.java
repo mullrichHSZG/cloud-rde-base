@@ -1,25 +1,21 @@
 package org.bissis.domain;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author Markus Ullrich
  */
 @Entity
-public class Product implements DomainObject {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Version
-    private Integer version;
+public class Product extends AbstractDomainClass {
 
     private String description;
     private BigDecimal price;
     private String imageUrl;
-
 
     public String getImageUrl() {
         return imageUrl;
@@ -45,21 +41,4 @@ public class Product implements DomainObject {
         this.description = description;
     }
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
 }

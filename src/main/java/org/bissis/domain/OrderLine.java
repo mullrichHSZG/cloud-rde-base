@@ -1,22 +1,18 @@
 package org.bissis.domain;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @author Markus Ullrich
  */
 @Entity
-public class CartDetail extends AbstractDomainClass {
+public class OrderLine extends AbstractDomainClass {
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
     @ManyToOne
-    private Cart cart;
+    private Orders orders;
 
     private Integer quantity;
 
@@ -28,12 +24,12 @@ public class CartDetail extends AbstractDomainClass {
         this.product = product;
     }
 
-    public Cart getCart() {
-        return cart;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
     public Integer getQuantity() {
@@ -43,5 +39,4 @@ public class CartDetail extends AbstractDomainClass {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
 }
