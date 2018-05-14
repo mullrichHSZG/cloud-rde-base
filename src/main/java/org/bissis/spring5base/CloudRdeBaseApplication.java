@@ -1,4 +1,4 @@
-package org.bissis;
+package org.bissis.spring5base;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
